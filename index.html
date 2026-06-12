@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bé Sen Việt Địa Chí - Giọng Đọc Tiếng Việt Chuẩn</title>
+    <title>Bé Sen Việt Địa Chí</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
     
@@ -476,7 +476,7 @@ animation:pulseVisit 2s infinite;
 
     <nav class="sidebar">
         <div class="logo-container">
-            <div class="logo-img"><img src="be sen ao choang.jpg" alt="Bé Sen Logo"></div>
+            <div class="logo-img"><img src="be sen moi.jpg" alt="Bé Sen Logo"></div>
             <div class="logo-text">
                 <h3>Bé Sen Việt Địa Chí</h3>
                 <span>Không Gian Văn Hóa Đọc</span>
@@ -874,8 +874,16 @@ chatBox.scrollTop=chatBox.scrollHeight;
 function checkAnswer(btn,index,correct){
 const options=btn.parentElement.querySelectorAll(".question-option");
 options.forEach(o=>o.disabled=true);
-if(index===correct){btn.classList.add("correct");score+=10;alert("🎉 Chính xác! +10 điểm");}
-else{btn.classList.add("wrong");options[correct].classList.add("correct");alert("❌ Chưa chính xác");}
+if(index===correct){
+    btn.classList.add("correct");
+    score+=10;
+    showBeSenMessage("🎉 Chính xác rồi! Bạn nhận được +10 điểm.");
+}
+else{
+    btn.classList.add("wrong");
+    options[correct].classList.add("correct");
+    showBeSenMessage("❌ Chưa chính xác rồi, hãy thử lại nhé!");
+}
 }
 </script>
 
@@ -890,6 +898,35 @@ else{btn.classList.add("wrong");options[correct].classList.add("correct");alert(
         if(el) el.textContent = count.toLocaleString('vi-VN');
     });
 })();
+</script>
+
+
+<div id="besenModal" class="besen-modal">
+  <div class="besen-box">
+    <h3>🌸 Bé Sen</h3>
+    <div id="besenText"></div>
+    <button onclick="closeBeSen()">Đồng ý</button>
+  </div>
+</div>
+
+<style>
+.besen-modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;
+background:rgba(0,0,0,.45);z-index:99999;justify-content:center;align-items:center;}
+.besen-box{background:#fff;width:360px;padding:20px;border-radius:20px;text-align:center;
+box-shadow:0 10px 30px rgba(0,0,0,.3);}
+.besen-box h3{color:#9b59b6;margin-bottom:15px;}
+.besen-box button{margin-top:15px;padding:10px 25px;border:none;border-radius:10px;
+background:#2ecc71;color:white;cursor:pointer;font-weight:bold;}
+</style>
+
+<script>
+function showBeSenMessage(text){
+ document.getElementById("besenText").innerHTML=text;
+ document.getElementById("besenModal").style.display="flex";
+}
+function closeBeSen(){
+ document.getElementById("besenModal").style.display="none";
+}
 </script>
 
 </body>
